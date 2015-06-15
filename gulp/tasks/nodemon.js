@@ -4,6 +4,6 @@ var nodemon = require('gulp-nodemon');
 /**
  * Start rsync task
  */
-gulp.task('nodemon', function () {
+gulp.task('nodemon', ['bower'], function () {
   nodemon()
 });
