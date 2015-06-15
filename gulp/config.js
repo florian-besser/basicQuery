@@ -9,7 +9,7 @@ module.exports = {
       emptyDirectories: true,
       recursive: true,
       clean: true,
-      exclude: ['gulp', '.DS_Store']
+      exclude: ['gulp', 'gulpfile.js', '.DS_Store']
     }
   }
 };
