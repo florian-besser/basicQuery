@@ -4,13 +4,35 @@
      });
 })();*/
 
-function getData(pageNumber)  {
-    var chunksize = 100, offset = (pageNumber-1) * chunksize;
-    $.getJSON( "movie/?limit=" + chunksize + "&offset=" + offset, function( json ) {
+function cleanArrows() {
+    $('.glyphicon').remove();
+}
+
+function displayArrow(id, direction) {
+    var field = $('#' + id);
+    if (direction == 'Up') {
+        field.append('<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>');
+    } else {
+        field.append('<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>');
+    }
+    
+}
+
+function getData(pageNumber, sorting) {
+    var chunksize = 100, offset = (pageNumber-1) * chunksize, line;
+    $.getJSON( "movie/?limit=" + chunksize + "&offset=" + offset + "&sorting=" + sorting, function( json ) {
         $('#movieList').empty();
         for (i = 0; i < chunksize; i++) { 
-            $('#movieList').append( "<tr><td>#" + (offset+i+1) + "</td><td>" + json[i].MovieID + "</td></tr>" );
-            dataGotten = true;
+            line = $(document.createElement( "tr" ));
+            line.append( "<td>#" + (offset+i+1) + "</td>" );
+            line.append( "<td>" + json[i].MovieID + "</td>" );
+            if (json[i].Rating) {
+                line.append( "<td>" + json[i].Rating.Rating + "</td>");
+            } else {
+                line.append( "<td></td>");
+            }
+            
+            $('#movieList').append(line);
         }
      });
 }
@@ -35,12 +57,36 @@ function displayPages(pageNumber)  {
 }
 
 $(function(){
-    getData(1);
-    displayPages(1);
+    var currentSortingId = "index", currentSortingAsc = "Up", pageNumber = 1;
+    getData(pageNumber, currentSortingId + currentSortingAsc);
+    displayPages(pageNumber);
+    displayArrow(currentSortingId, currentSortingAsc);
     
-    $( ".pagination" ).click(function(event) {
-        var target = $( event.target ), pageNumber = parseInt(target.text());
+    $( "#pages" ).click(function(event) {
+        var target = $( event.target );
+        pageNumber = parseInt(target.text())
         displayPages(pageNumber);
-        getData(pageNumber);
+        getData(pageNumber, currentSortingId + currentSortingAsc);
+    });
+    
+    $( "#index,#rating" ).click(function(event) {
+        if (event.target.id == '') {
+            return;
+        }
+        
+        if (currentSortingId != event.target.id)  {
+            currentSortingId = event.target.id;
+            currentSortingAsc = "Up";
+        } else {
+            if (currentSortingAsc == "Up") {
+                currentSortingAsc = "Down";
+            } else {
+                currentSortingAsc = "Up";
+            }
+        }
+
+        getData(pageNumber, currentSortingId + currentSortingAsc);
+        cleanArrows();
+        displayArrow(currentSortingId, currentSortingAsc);
     });
 })();

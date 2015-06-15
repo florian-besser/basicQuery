@@ -6,7 +6,7 @@ var Movie = require('../models/Movie.js');
 
 /* GET movies listing. */
 router.get('/', function(req, res, next) {
-    var offset, limit;
+    var offset, limit, sortField, sortDirection;
     
     if (req.query.limit) {
         console.log("Limit set to " + req.query.limit);
@@ -20,8 +20,27 @@ router.get('/', function(req, res, next) {
     } else {
         offset = 0;
     }
-    
-  Movie.find({}, 'MovieID', { skip: offset, limit: limit }, function (err, movies) {
+    console.log("req.query.sorting " + req.query.sorting);
+    if (req.query.sorting) {
+        if (req.query.sorting.indexOf('Up') > -1) {
+            sortDirection = 1;
+        } else {
+            sortDirection = -1;
+        }
+        if (req.query.sorting.indexOf('rating') > -1) {
+            sortField = 'Rating.Rating';
+        } else {
+            sortField = 'MovieID';
+        }
+    } else {
+        sortField = 'MovieID';
+        sortDirection = 1;
+    }
+    console.log("sortField " + sortField);
+    console.log("sortDirection " + sortDirection);
+    var sort = {};
+    sort[sortField] = sortDirection;
+  Movie.find({}, 'MovieID Rating', { skip: offset, limit: limit, sort: sort }, function (err, movies) {
     if (err) return next(err);
     res.json(movies);
   });
