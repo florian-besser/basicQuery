@@ -1,0 +1,13 @@
+{
+  "name": "basicQueryFrontend",
+  "version": "0.0.0",
+  "private": true,
+  "main": "path/to/main.css",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "bootstrap": "*"
+  }
+}

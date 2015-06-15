@@ -16,9 +16,11 @@
     "serve-favicon": "~2.2.1"
   },
   "devDependencies": {
-    "require-dir": "*",
+    "bower": "^1.4.1",
     "gulp": "*",
+    "gulp-bower": "0.0.10",
     "gulp-nodemon": "^2.0.3",
-    "gulp-rsync": "*"
+    "gulp-rsync": "*",
+    "require-dir": "*"
   }
 }
