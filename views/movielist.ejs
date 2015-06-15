@@ -7,6 +7,12 @@
     <title>MOVIES</title>
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="jquery/jquery.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="bootstrap/js/bootstrap.js"></script>
+      
+      <script src="javascripts/moviePager.js"></script>
   </head>
   <body>
       <div class="container theme-showcase" role="main">
@@ -15,27 +21,20 @@
               <p>Please give it some time to load...</p>
           </div>
 
+          <nav>
+            <ul id="pages" class="pagination">
+            </ul>
+          </nav>
           <table class="table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Movie name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                </tbody>
-              </table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Movie name</th>
+              </tr>
+            </thead>
+            <tbody id="movieList">
+            </tbody>
+          </table>
       </div>
-      
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="jquery/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

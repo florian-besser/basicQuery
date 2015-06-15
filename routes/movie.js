@@ -6,7 +6,22 @@ var Movie = require('../models/Movie.js');
 
 /* GET movies listing. */
 router.get('/', function(req, res, next) {
-  Movie.find(function (err, movies) {
+    var offset, limit;
+    
+    if (req.query.limit) {
+        console.log("Limit set to " + req.query.limit);
+        limit = req.query.limit;
+    } else {
+        limit = 10;
+    }
+    if (req.query.offset) {
+        console.log("Offset set to " + req.query.offset);
+        offset = req.query.offset;
+    } else {
+        offset = 0;
+    }
+    
+  Movie.find({}, 'MovieID', { skip: offset, limit: limit }, function (err, movies) {
     if (err) return next(err);
     res.json(movies);
   });
