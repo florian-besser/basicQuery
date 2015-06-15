@@ -17,13 +17,6 @@ router.post('/', function(req, res, next) {
 
   var m = new Movie(req.body);
 
-  //m.MovieID = "as";
-  //m.SeriesID = "df";
-  //m.something = "somethingman";
-  //m.somethingelse = "somethingman";
-
-  //res.json(m);
-
   m.save(function(err, post) {
         if(err) {
             console.log(err);
@@ -34,11 +27,6 @@ router.post('/', function(req, res, next) {
             res.json(post);
         }
     });
-
-  /*Movie.create(req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });*/
 });
 
 /* GET (single) movie */
