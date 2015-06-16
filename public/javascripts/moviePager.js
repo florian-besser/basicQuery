@@ -1,42 +1,3 @@
-/*$(function(){
-    $.getJSON( "movie/%22The%20Good%20Wife%22%20(2009)", function( json ) {
-      console.log( "JSON Data: " + json[0].MovieID );
-     });
-})();*/
-
-function cleanArrows() {
-    $('.glyphicon').remove();
-}
-
-function displayArrow(id, direction) {
-    var field = $('#' + id);
-    if (direction == 'Up') {
-        field.append('<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>');
-    } else {
-        field.append('<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>');
-    }
-    
-}
-
-function getData(pageNumber, sorting) {
-    var chunksize = 100, offset = (pageNumber-1) * chunksize, line;
-    $.getJSON( "movie/?limit=" + chunksize + "&offset=" + offset + "&sorting=" + sorting, function( json ) {
-        $('#movieList').empty();
-        for (i = 0; i < chunksize; i++) { 
-            line = $(document.createElement( "tr" ));
-            line.append( "<td>#" + (offset+i+1) + "</td>" );
-            line.append( "<td>" + json[i].MovieID + "</td>" );
-            if (json[i].Rating) {
-                line.append( "<td>" + json[i].Rating.Rating + "</td>");
-            } else {
-                line.append( "<td></td>");
-            }
-            
-            $('#movieList').append(line);
-        }
-     });
-}
-
 function displayPages(pageNumber)  {
     var totalPages = 26, min = pageNumber - totalPages / 2, max = pageNumber + totalPages / 2;
     
@@ -56,7 +17,45 @@ function displayPages(pageNumber)  {
     }
 }
 
-$(function(){
+function displayArrow(id, direction) {
+    var field = $('#' + id);
+    if (direction == 'Up') {
+        field.append('<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>');
+    } else {
+        field.append('<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>');
+    }
+    
+}
+
+function cleanArrows() {
+    $('.glyphicon').remove();
+}
+
+function getData(pageNumber, sorting) {
+    var chunksize = 100, 
+        offset = (pageNumber-1) * chunksize, 
+        url = "movie/?limit=" + chunksize + "&offset=" + offset + "&sorting=" + sorting,
+        line;        
+    
+    console.log('Querying ' + url);
+    $.getJSON( url, function( json ) {
+        $('#movieList').empty();
+        for (i = 0; i < chunksize; i++) { 
+            line = $(document.createElement( "tr" ));
+            line.append( "<td>#" + (offset+i+1) + "</td>" );
+            line.append( "<td>" + json[i].MovieID + "</td>" );
+            if (json[i].Rating) {
+                line.append( "<td>" + json[i].Rating.Rating + "</td>");
+            } else {
+                line.append( "<td></td>");
+            }
+            
+            $('#movieList').append(line);
+        }
+     });
+}
+
+function init(){
     var currentSortingId = "index", currentSortingAsc = "Up", pageNumber = 1;
     getData(pageNumber, currentSortingId + currentSortingAsc);
     displayPages(pageNumber);
@@ -64,6 +63,7 @@ $(function(){
     
     $( "#pages" ).click(function(event) {
         var target = $( event.target );
+        console.log('Clicked on page ' + target.text());
         pageNumber = parseInt(target.text())
         displayPages(pageNumber);
         getData(pageNumber, currentSortingId + currentSortingAsc);
@@ -89,4 +89,6 @@ $(function(){
         cleanArrows();
         displayArrow(currentSortingId, currentSortingAsc);
     });
-})();
+}
+
+$(init);
