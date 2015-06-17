@@ -38,7 +38,6 @@ function getData(pageNumber, sorting) {
         line;        
     
     console.log('Querying ' + url);
-    document.title = "loading...";
     $.getJSON( url, function( json ) {
         $('#movieList').empty();
         for (i = 0; i < chunksize; i++) { 
@@ -53,7 +52,6 @@ function getData(pageNumber, sorting) {
             
             $('#movieList').append(line);
         }
-        document.title = "MOVIES";
      });
 }
 
@@ -94,3 +92,12 @@ function init(){
 }
 
 $(init);
+
+$( document ).ajaxStart( function() {
+    document.title = "loading...";
+    console.log("Started loading...");
+});
+$( document ).ajaxStop (function() {
+    document.title = "MOVIES";
+    console.log("Finished loading...");
+});
