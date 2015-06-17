@@ -93,11 +93,11 @@ function init(){
 
 $(init);
 
-$( document ).ajaxStart( function() {
-    document.title = "loading...";
+$( document ).ajaxStart ( function() {
     console.log("Started loading...");
+    $('#myModal').modal('show');
 });
 $( document ).ajaxStop (function() {
-    document.title = "MOVIES";
     console.log("Finished loading...");
+    $('#myModal').modal('hide');
 });

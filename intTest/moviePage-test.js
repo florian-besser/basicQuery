@@ -5,18 +5,10 @@ describe("moviePage", function() {
     var driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
     //driver.manage().timeouts().implicitlyWait(10000000);
     
-    function waitForAjaxStart(driver) {
-        driver.wait(function() {
-          return driver.getTitle().then(function(title) {
-            return title.toLowerCase() == 'loading...';
-          });
-        }, 10000);
-    }
-
     function waitForAjaxStop(driver) {
         driver.wait(function() {
-          return driver.getTitle().then(function(title) {
-            return title.toLowerCase() != 'loading...';
+          return driver.findElement(webdriver.By.id('myModal')).isDisplayed().then(function(isDisplayed) {
+            return !isDisplayed;
           });
         }, 10000);
     }
@@ -44,8 +36,9 @@ describe("moviePage", function() {
     
 	it('should be ablte to sort', function (done) {
 		driver.get('http://localhost:3000/');
+        waitForAjaxStop(driver);
 		driver.findElement(webdriver.By.id('rating')).click();
-        waitForAjaxStart(driver);
+        waitForAjaxStop(driver);
 		driver.findElement(webdriver.By.id('rating')).click();
         waitForAjaxStop(driver);
 
