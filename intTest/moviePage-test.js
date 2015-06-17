@@ -5,7 +5,15 @@ describe("moviePage", function() {
     var driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
     //driver.manage().timeouts().implicitlyWait(10000000);
     
-    function waitForAjax(driver) {
+    function waitForAjaxStart(driver) {
+        driver.wait(function() {
+          return driver.getTitle().then(function(title) {
+            return title.toLowerCase() == 'loading...';
+          });
+        }, 10000);
+    }
+
+    function waitForAjaxStop(driver) {
         driver.wait(function() {
           return driver.getTitle().then(function(title) {
             return title.toLowerCase() != 'loading...';
@@ -15,7 +23,7 @@ describe("moviePage", function() {
 
 	it('should be on correct page', function (done) {
 		driver.get('http://localhost:3000/');
-        waitForAjax(driver);
+        waitForAjaxStop(driver);
 
         driver.getTitle().then(function(title) {
 			expect(title).toBe('MOVIES');
@@ -37,9 +45,9 @@ describe("moviePage", function() {
 	it('should be ablte to sort', function (done) {
 		driver.get('http://localhost:3000/');
 		driver.findElement(webdriver.By.id('rating')).click();
-        waitForAjax(driver);
+        waitForAjaxStart(driver);
 		driver.findElement(webdriver.By.id('rating')).click();
-        waitForAjax(driver);
+        waitForAjaxStop(driver);
 
         driver.findElement(webdriver.By.css('#movieList tr:nth-child(2) td:nth-child(1)')).getText().then(function (text) {
 			expect(text).toBe('#2');
