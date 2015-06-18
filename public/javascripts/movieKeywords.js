@@ -62,9 +62,9 @@ function getData(pageNumber) {
                 }
             }
         }
-        //if (pageNumber < 50) {
+        if (pageNumber < 50) {
             getData(pageNumber+1);
-        //}
+        }
      });
 }
 
