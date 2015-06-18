@@ -9,6 +9,8 @@ var indexRoute = require('./routes/index');
 var movieRoute = require('./routes/movie');
 var movieTypeRoute = require('./routes/movieType');
 var typeRoute = require('./routes/types');
+var keywordRoute = require('./routes/keyword');
+var keywordCloudRoute = require('./routes/keywordCloud');
 
 var mongoose = require('mongoose');
 mongoose.set('debug', true);
@@ -39,6 +41,8 @@ app.use('/', indexRoute);
 app.use('/movie', movieRoute);
 app.use('/movieType', movieTypeRoute);
 app.use('/type', typeRoute);
+app.use('/keyword', keywordRoute);
+app.use('/keywordCloud', keywordCloudRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
