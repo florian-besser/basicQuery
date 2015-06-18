@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TYPES</title>
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="jquery/jquery.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="bootstrap/js/bootstrap.js"></script>
+      <!-- d3.js -->
+      <script src="d3/d3.js"></script>
+      
+        <script src="javascripts/movieTypes.js"></script>
+  </head>
+  <body>
+      <div class="container theme-showcase" role="main">
+          <div class="jumbotron">
+              <h1>Sorted Movies by Type</h1>
+              <p>Bigger circles = higher rating</p>
+          </div>
+
+          <nav>
+            <ul id="pages" class="pagination">
+                <li class="active"><a href="#">Action</a></li>
+                <li><a href="#">Adventure</a></li>
+                <li><a href="#">Animation</a></li>
+                <li><a href="#">Biography</a></li>
+                <li><a href="#">Comedy</a></li>
+                <li><a href="#">Crime</a></li>
+                <li><a href="#">Documentary</a></li>
+                <li><a href="#">Drama</a></li>
+                <li><a href="#">Family</a></li>
+                <li><a href="#">Fantasy</a></li>
+                <li><a href="#">Film-Noir</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Horror</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Musical</a></li>
+                <li><a href="#">Mistery</a></li>
+                <li><a href="#">Romance</a></li>
+                <li><a href="#">Sci-Fi</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Thriller</a></li>
+                <li><a href="#">War</a></li>
+                <li><a href="#">Western</a></li>
+            </ul>
+          </nav>
+          <div id="data">
+          </div>
+      </div>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Loading data</h4>
+              </div>
+              <div class="modal-body">
+                <p>This modal will auto-close when all data is loaded.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+  </body>
+</html>

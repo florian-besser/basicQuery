@@ -9,6 +9,7 @@
   ],
   "dependencies": {
     "bootstrap": "*",
+    "d3": "*",
     "jasmine": "*",
     "jasmine-jquery": "*",
     "jasmine-ajax": "3.1.0"

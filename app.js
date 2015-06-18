@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var indexRoute = require('./routes/index');
 var movieRoute = require('./routes/movie');
+var movieTypeRoute = require('./routes/movieType');
+var typeRoute = require('./routes/types');
 
 var mongoose = require('mongoose');
 mongoose.set('debug', true);
@@ -35,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRoute);
 app.use('/movie', movieRoute);
+app.use('/movieType', movieTypeRoute);
+app.use('/type', typeRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
