@@ -41,13 +41,13 @@ function redrawCircles() {
     nodeEntries.append("text")
           .attr("dy", ".3em")
           .style("text-anchor", "middle")
-          .text(function(d) { return d.name.substring(0, d.r / 5); });
+          .text(function(d) { return d.name.substring(0, d.value); });
 }
 
 function increaseSize(name) {
     for(var i=0;i<data.children.length;i++){
         if (originalData.children[i].name == name) {
-            data.children[i].value = Number(originalData.children[i].value) + 4;
+            data.children[i].value = Number(originalData.children[i].value) + 1.5;
         }
     }
     redrawCircles();
