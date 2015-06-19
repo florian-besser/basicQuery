@@ -12,6 +12,7 @@
     "d3": "*",
     "jasmine": "*",
     "jasmine-jquery": "*",
-    "jasmine-ajax": "3.1.0"
+    "jasmine-ajax": "3.1.0",
+    "mustache": "*"
   }
 }

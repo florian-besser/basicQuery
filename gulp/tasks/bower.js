@@ -29,4 +29,8 @@ gulp.task('moveJasmineAjax', ['bowerInstall'], function () {
     return gulp.src(['bower_components/jasmine-ajax/lib/**/*']).pipe(gulp.dest('test-lib/jasmine-ajax'));
 });
 
-gulp.task('bower', ['moveBootstrap', 'moveD3', 'moveJQuery', 'moveJasmineJQuery', 'moveJasmine', 'moveJasmineAjax']);
+gulp.task('moveMustache', ['bowerInstall'], function () {
+    return gulp.src(['bower_components/mustache/*.js']).pipe(gulp.dest('public/mustache'));
+});
+
+gulp.task('bower', ['moveBootstrap', 'moveD3', 'moveJQuery', 'moveJasmineJQuery', 'moveJasmine', 'moveJasmineAjax', 'moveMustache']);

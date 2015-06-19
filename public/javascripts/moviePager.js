@@ -41,16 +41,10 @@ function getData(pageNumber, sorting) {
     $.getJSON( url, function( json ) {
         $('#movieList').empty();
         for (i = 0; i < chunksize; i++) { 
-            line = $(document.createElement( "tr" ));
-            line.append( "<td>#" + (offset+i+1) + "</td>" );
-            line.append( "<td>" + json[i].MovieID + "</td>" );
-            if (json[i].Rating) {
-                line.append( "<td>" + json[i].Rating.Rating + "</td>");
-            } else {
-                line.append( "<td></td>");
-            }
-            
-            $('#movieList').append(line);
+            json[i].offset = offset+i+1;
+            var template = $('#movieTpl').html();
+            var html = Mustache.to_html(template, json[i]);
+            $('#movieList').append(html);
         }
      });
 }

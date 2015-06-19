@@ -11,8 +11,16 @@
       <script src="jquery/jquery.js"></script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="bootstrap/js/bootstrap.js"></script>
+      <script src="mustache/mustache.js"></script>
       
       <script src="javascripts/moviePager.js"></script>
+      <script id="movieTpl" type="text/template">
+        <tr>
+            <td>#{{offset}}</td>
+            <td>{{MovieID}}</td>
+            <td>{{Rating.Rating}}</td>
+        </tr>
+      </script>
   </head>
   <body>
       <div class="container theme-showcase" role="main">

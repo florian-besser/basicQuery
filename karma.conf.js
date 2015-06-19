@@ -17,6 +17,7 @@ module.exports = function(config) {
     files: [
         // dependencies
         {pattern: 'public/jquery/*.js', watched: false, served: true, included: true},
+        {pattern: 'public/mustache/*.js', watched: false, served: true, included: true},
         {pattern: 'test-lib/jasmine-jquery/*.js', watched: false, served: true, included: true},
         {pattern: 'test-lib/jasmine-ajax/*.js', watched: false, served: true, included: true},
 
@@ -33,6 +34,7 @@ module.exports = function(config) {
       
     proxies: {
         '/bootstrap/': '/base/public/bootstrap/',
+        '/mustache/': '/base/public/mustache/',
         '/jquery/': '/base/public/jquery/',
         '/javascripts/': '/base/public/javascripts/'
     },
